@@ -1,4 +1,4 @@
-package com.android.gamebacklogtracker
+package org.setu.gamebacklog
 
 import org.junit.Test
 
