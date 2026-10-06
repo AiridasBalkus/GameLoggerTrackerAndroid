@@ -22,6 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "GameBacklogTracker"
+rootProject.name = "Game Backlog Tracker"
 include(":app")
- 
