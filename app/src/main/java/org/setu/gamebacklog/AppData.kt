@@ -1,4 +1,4 @@
-package org.setu.gamebacklog.main
+package org.setu.gamebacklog
 
 import org.setu.gamebacklog.models.GameMemStore
 import org.setu.gamebacklog.models.GameStore
