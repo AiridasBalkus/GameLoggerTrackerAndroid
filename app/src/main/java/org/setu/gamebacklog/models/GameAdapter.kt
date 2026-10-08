@@ -27,8 +27,8 @@ class GameAdapter(
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = games[position]
         holder.titleText.text = game.title
-        holder.detailsText.text = "${game.platform} • ${game.status.label}"
-        holder.statsText.text = "★ ${game.rating}/5 • ${game.playtimeHours}hrs played"
+        holder.detailsText.text = "Platform: ${game.platform} Status of the Game: ${game.status.label}"
+        holder.statsText.text = "Rating of the game: ${game.rating}/5 Playtime: ${game.playtimeHours} hours played"
     }
 
     override fun getItemCount(): Int = games.size
