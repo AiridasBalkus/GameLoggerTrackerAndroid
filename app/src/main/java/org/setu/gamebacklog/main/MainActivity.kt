@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import org.setu.gamebacklog.AddEditActivity
 import org.setu.gamebacklog.R
 import org.setu.gamebacklog.GameListActivity
 
@@ -23,6 +24,9 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.viewGamesButton).setOnClickListener {
             startActivity(Intent(this, GameListActivity::class.java))
+        }
+        findViewById<Button>(R.id.addGameButton).setOnClickListener {
+            startActivity(Intent(this, AddEditActivity::class.java))
         }
     }
 }

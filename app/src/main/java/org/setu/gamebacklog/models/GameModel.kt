@@ -5,7 +5,7 @@ data class GameModel (
     var title: String,
     var platform: String,
     var status: GameStatus = GameStatus.BACKLOG,
-    var rating: Float = 0f,
+    var rating: Int = 0,
     var playtimeHours: Int = 0,
     var notes: String = ""
 )

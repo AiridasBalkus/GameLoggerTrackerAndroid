@@ -25,8 +25,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Title of game"
-            android:inputType="text"
-            android:text="Title" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/platformInput"
@@ -34,8 +33,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Platform (e.g. PS5, PC, XBOX)"
-            android:inputType="text"
-            android:text="Platform" />
+            android:inputType="text" />
 
         <TextView
             android:id="@+id/statusLabel"
@@ -70,8 +68,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Playtime (hours)"
-            android:inputType="number"
-            android:text="Playtime" />
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/notesInput"
@@ -80,8 +77,7 @@
             android:ems="10"
             android:hint="Add some notes about the game!"
             android:inputType="text|textMultiLine"
-            android:minLines="3"
-            android:text="Notes" />
+            android:minLines="3" />
 
         <LinearLayout
             android:layout_width="match_parent"
