@@ -8,10 +8,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.setu.gamebacklog.models.GameAdapter
+import android.content.Intent
+import org.setu.gamebacklog.models.GameModel
 
 class GameListActivity : AppCompatActivity() {
     private lateinit var adapter: GameAdapter
     private lateinit var emptyText: TextView
+    private fun editGame(game: GameModel){
+        val intent = Intent(this, AddEditActivity::class.java)
+        intent.putExtra("id", game.id)
+        startActivity(intent)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +26,7 @@ class GameListActivity : AppCompatActivity() {
 
         emptyText = findViewById(R.id.emptyText)
 
-        adapter = GameAdapter(AppData.games.findAll())
+        adapter = GameAdapter(games = AppData.games.findAll(), onEdit = {game -> editGame(game)})
 
         val recyclerView = findViewById<RecyclerView>(R.id.gamesRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
