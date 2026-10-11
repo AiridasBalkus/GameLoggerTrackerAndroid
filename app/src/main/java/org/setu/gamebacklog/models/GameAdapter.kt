@@ -10,7 +10,8 @@ import org.setu.gamebacklog.R
 
 class GameAdapter(
     private var games: List<GameModel>,
-    private val onEdit: (GameModel) -> Unit
+    private val onEdit: (GameModel) -> Unit,
+    private val onDelete: (GameModel) -> Unit
 ) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
     class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -18,6 +19,7 @@ class GameAdapter(
         val detailsText: TextView = itemView.findViewById(R.id.detailsText)
         val statsText: TextView = itemView.findViewById(R.id.statsText)
         val editButton: Button = itemView.findViewById(R.id.editButton)
+        val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
@@ -32,6 +34,7 @@ class GameAdapter(
         holder.detailsText.text = "Platform: ${game.platform} Status of the Game: ${game.status.label}"
         holder.statsText.text = "Rating of the game: ${game.rating}/5 Playtime: ${game.playtimeHours} hours played"
         holder.editButton.setOnClickListener { onEdit(game) }
+        holder.deleteButton.setOnClickListener { onDelete(game) }
     }
 
     override fun getItemCount(): Int = games.size
