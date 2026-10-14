@@ -14,7 +14,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import org.setu.gamebacklog.models.GameModel
 import org.setu.gamebacklog.models.GameStatus
-import java.io.DataInput
 
 class AddEditActivity : AppCompatActivity() {
 
@@ -50,16 +49,22 @@ class AddEditActivity : AppCompatActivity() {
         findViewById<Button>(R.id.cancelButton).setOnClickListener {
             finish()
         }
+        //placeholder for CA2
+        findViewById<Button>(R.id.coverImageButton).setOnClickListener {
+            Toast.makeText(this, R.string.coming_soon, Toast.LENGTH_SHORT).show()
+        }
+
         editingId = intent.getLongExtra("id", -1L).takeIf { it != -1L }
 
-        if(editingId != null){
-            findViewById<TextView>(R.id.formTitle).text = "Edit Game"
-            findViewById<Button>(R.id.saveButton).text = "Save changes"
-            loadExistingGame(editingId!!)
+        editingId?.let { id ->
+            findViewById<TextView>(R.id.formTitle).setText(R.string.edit_game_title)
+            findViewById<Button>(R.id.saveButton).setText(R.string.save_changes)
+            loadExistingGame(id)
         }
     }
     private fun setupStatusSpinner(){
-        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, GameStatus.entries.map{it.label})
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, GameStatus.entries.map { it.label }
+        )
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         statusSpinner.adapter = spinnerAdapter
         statusSpinner.setSelection(GameStatus.BACKLOG.ordinal)
@@ -67,7 +72,7 @@ class AddEditActivity : AppCompatActivity() {
     private fun loadExistingGame(id: Long) {
         val game = AppData.games.findOne(id)
         if (game == null) {
-            Toast.makeText(this, "Game is not found", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.game_not_found, Toast.LENGTH_SHORT).show()
             finish()
             return
         }
@@ -80,15 +85,16 @@ class AddEditActivity : AppCompatActivity() {
     }
     private fun saveGame(){
         val title = titleInput.text.toString().trim()
-        val currentId = editingId
+
         if(title.isEmpty()){
-            titleInput.error = "A title is required!"
+            titleInput.error = getString(R.string.error_title_required)
             return
         }
         val playtimeText = playtimeInput.text.toString().trim()
         val playtime = if(playtimeText.isEmpty()) 0 else playtimeText.toIntOrNull()
+
         if(playtime == null){
-            playtimeInput.error = "Please enter a valid number of hours!"
+            playtimeInput.error = getString(R.string.error_playtime_invalid)
             return
         }
         val game = GameModel(
@@ -99,15 +105,16 @@ class AddEditActivity : AppCompatActivity() {
             playtimeHours = playtime,
             notes = notesInput.text.toString().trim()
         )
+        val currentId = editingId
         if(currentId == null){
             AppData.games.create(game)
-            Toast.makeText(this, "Game added", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.game_added, Toast.LENGTH_SHORT).show()
         }else{
             game.id = currentId
             if(AppData.games.update(game)){
-                Toast.makeText(this, "Game Updated", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.game_updated, Toast.LENGTH_SHORT).show()
             }else{
-                Toast.makeText(this, "Game not found", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.game_not_found, Toast.LENGTH_SHORT).show()
             }
         }
         finish()

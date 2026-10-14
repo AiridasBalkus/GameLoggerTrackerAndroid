@@ -12,7 +12,7 @@
     <string name="add_game">Add game</string>
     <string name="statistics">Statistics</string>
     <string name="settings">Settings</string>
-    <string name="coming_soon">Coming soon in a future update</string>
+    <string name="coming_soon">Coming soon!</string>
     <!-- Game list -->
     <string name="my_backlog">My Backlog</string>
     <string name="sort">Sort</string>
@@ -52,4 +52,7 @@
     <string name="error_playtime_invalid">Enter a valid number of hours</string>
     <string name="delete_dialog_title">Delete game</string>
     <string name="delete_dialog_message">Remove \"%1$s\" from your backlog?</string>
+    <!-- Profile (CA2) -->
+    <string name="profile_desc">Profile and linked accounts</string>
+    <string name="accounts_coming_soon">Linking Steam, PlayStation and Xbox accounts is coming in a future update</string>
 </resources>

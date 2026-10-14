@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,101 +8,133 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="32dp">
+        android:padding="24dp">
 
         <TextView
             android:id="@+id/formTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Game"
+            android:text="@string/add_game_title"
             android:textSize="28sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/titleInput"
+        <Button
+            android:id="@+id/coverImageButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Title of game"
-            android:inputType="text" />
+            android:layout_height="120dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/add_cover_art" />
 
-        <EditText
-            android:id="@+id/platformInput"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Platform (e.g. PS5, PC, XBOX)"
-            android:inputType="text" />
+            android:layout_marginTop="16dp"
+            android:hint="@string/hint_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/titleInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/hint_platform">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/platformInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/statusLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Status" />
+            android:text="@string/label_status"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/statusSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="48dp" />
 
         <TextView
             android:id="@+id/ratingLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rating" />
+            android:layout_marginTop="16dp"
+            android:text="@string/label_rating"
+            android:textStyle="bold" />
 
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:numStars="5"
             android:rating="0"
             android:stepSize="1" />
 
-        <EditText
-            android:id="@+id/playTimeInput"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Playtime (hours)"
-            android:inputType="number" />
+            android:layout_marginTop="8dp"
+            android:hint="@string/hint_playtime">
 
-        <EditText
-            android:id="@+id/notesInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/playTimeInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Add some notes about the game!"
-            android:inputType="text|textMultiLine"
-            android:minLines="3" />
+            android:layout_marginTop="8dp"
+            android:hint="@string/hint_notes">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/notesInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:inputType="textMultiLine|textCapSentences"
+                android:minLines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/saveButton"
-                android:layout_width="221dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/cancelButton"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:backgroundTint="#08FF00"
-                android:text="Save"
-                android:textColor="#000000"
-                android:textStyle="bold" />
+                android:text="@string/cancel" />
 
             <Button
-                android:id="@+id/cancelButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/saveButton"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="#FF0000"
-                android:text="Cancel"
-                android:textColor="#000000"
-                android:textStyle="bold" />
+                android:text="@string/save" />
         </LinearLayout>
 
     </LinearLayout>
