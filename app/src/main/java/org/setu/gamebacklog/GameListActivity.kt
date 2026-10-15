@@ -13,10 +13,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import org.setu.gamebacklog.models.GameModel
 import com.google.android.material.chip.ChipGroup
-
+import androidx.core.widget.doAfterTextChanged
+import com.google.android.material.textfield.TextInputEditText
+import org.setu.gamebacklog.models.GameStatus
 class GameListActivity : AppCompatActivity() {
     private lateinit var adapter: GameAdapter
     private lateinit var emptyText: TextView
+    private var searchQuery = ""
+    private var statusFilter: GameStatus? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,11 +40,22 @@ class GameListActivity : AppCompatActivity() {
         findViewById<Button>(R.id.listAddButton).setOnClickListener {
             startActivity(Intent(this, AddEditActivity::class.java))
         }
+        findViewById<TextInputEditText>(R.id.searchInput).doAfterTextChanged { text ->
+            searchQuery = text?.toString()?.trim().orEmpty()
+            refreshList()
+        }
+        findViewById<ChipGroup>(R.id.filterChips).setOnCheckedStateChangeListener { _, checkedIds ->
+            statusFilter = when (checkedIds.firstOrNull()) {
+                R.id.chipPlaying -> GameStatus.PLAYING
+                R.id.chipBacklog -> GameStatus.BACKLOG
+                R.id.chipCompleted -> GameStatus.COMPLETED
+                R.id.chipWishlist -> GameStatus.WISHLIST
+                R.id.chipDropped -> GameStatus.DROPPED
+                else -> null
+            }
+        }
         //another placeholder for CA2
         findViewById<Button>(R.id.sortButton).setOnClickListener { showComingSoon() }
-        findViewById<ChipGroup>(R.id.filterChips).setOnCheckedStateChangeListener { _, _ ->
-            showComingSoon()
-        }
         refreshList()
     }
 
@@ -52,9 +67,19 @@ class GameListActivity : AppCompatActivity() {
     }
 
     private fun refreshList() {
-        val games = AppData.games.findAll()
+        val allGames = AppData.games.findAll()
+
+        val games = allGames.filter { game ->
+            val matchesStatus = statusFilter == null || game.status == statusFilter
+            val matchesSearch = searchQuery.isEmpty() ||
+                    game.title.contains(searchQuery, ignoreCase = true) ||
+                    game.platform.contains(searchQuery, ignoreCase = true)
+            matchesStatus && matchesSearch
+        }
+
         adapter.updateGames(games)
         emptyText.visibility = if (games.isEmpty()) View.VISIBLE else View.GONE
+        emptyText.setText(if (allGames.isEmpty()) R.string.empty_list else R.string.no_matches)
     }
     private fun editGame(game: GameModel) {
         val intent = Intent(this, AddEditActivity::class.java)
