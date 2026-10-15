@@ -1,3 +1,58 @@
 <resources>
     <string name="app_name">Game Backlog Tracker</string>
+    <!-- Main menu -->
+    <string name="app_title">Game Backlog</string>
+    <string name="app_subtitle">Track what you\'re playing and finish what you started.</string>
+    <string name="app_logo_desc">Game controller logo</string>
+    <string name="stat_zero">0</string>
+    <string name="stat_total">Games</string>
+    <string name="stat_playing">Playing</string>
+    <string name="stat_completed">Completed</string>
+    <string name="view_games">View games</string>
+    <string name="add_game">Add game</string>
+    <string name="statistics">Statistics</string>
+    <string name="settings">Settings</string>
+    <string name="coming_soon">Coming soon!</string>
+    <!-- Game list -->
+    <string name="my_backlog">My Backlog</string>
+    <string name="sort">Sort</string>
+    <string name="search_games">Search games</string>
+    <string name="filter_all">All</string>
+    <string name="filter_playing">Playing</string>
+    <string name="filter_backlog">Backlog</string>
+    <string name="filter_completed">Completed</string>
+    <string name="filter_wishlist">Wishlist</string>
+    <string name="filter_dropped">Dropped</string>
+    <string name="empty_list">No games yet. Tap \"Add game\" to start your backlog!</string>
+    <string name="back_to_menu">Back to menu</string>
+    <!-- Game card -->
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="platform_unknown">Unknown platform</string>
+    <string name="playtime_hours">%1$d h played</string>
+    <!-- Add / edit form -->
+    <string name="add_game_title">Add Game</string>
+    <string name="edit_game_title">Edit Game</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_platform">Platform (e.g. PS5, PC, Xbox)</string>
+    <string name="label_status">Status</string>
+    <string name="label_rating">Rating</string>
+    <string name="hint_playtime">Playtime (hours)</string>
+    <string name="hint_notes">Notes</string>
+    <string name="add_cover_art">Add cover art</string>
+    <string name="save">Save</string>
+    <string name="save_changes">Save changes</string>
+    <string name="cancel">Cancel</string>
+    <!-- Messages -->
+    <string name="game_added">Game added</string>
+    <string name="game_updated">Game updated</string>
+    <string name="game_not_found">Game not found</string>
+    <string name="game_deleted">\"%1$s\" deleted</string>
+    <string name="error_title_required">Title is required</string>
+    <string name="error_playtime_invalid">Enter a valid number of hours</string>
+    <string name="delete_dialog_title">Delete game</string>
+    <string name="delete_dialog_message">Remove \"%1$s\" from your backlog?</string>
+    <!-- Profile (CA2) -->
+    <string name="profile_desc">Profile and linked accounts</string>
+    <string name="accounts_coming_soon">Linking Steam, PlayStation and Xbox accounts is coming in a future update</string>
 </resources>
