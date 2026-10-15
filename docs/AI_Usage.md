@@ -4,6 +4,7 @@ I used Claude (Anthropic) as an assistant during development of this app. This n
 ## What AI was used for
 - Breaking the assignment into Github issues, and aligning them with the approach taught in the labs.
 - UI polish (issue #9) suggested the use of Material 3 versions, move to hard-coded text into `strings.xml`.
-- UML diagrams: generated the Mermaid class, ise case and sequence diagrams in `doc/uml.md` from the final code.
+- UML diagrams: generated the Mermaid class, use case and sequence diagrams in `doc/uml.md` from the final code.
 - Created a README template.
 - Github co-pilot was used to generate most of the commit messages.
+- Some Bug fixing which I wasn't able to reslove on my own (I did review the code and was only committed after building and testing it on my device.)

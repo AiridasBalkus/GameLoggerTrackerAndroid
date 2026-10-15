@@ -21,12 +21,12 @@ There is already small placeholders for these and show a simple message "coming 
 - Statistic and Settings screens
 - User profile with potential integration with Steam, Xbox and maybe even PlayStation
 
-**NB** Data is currently stored in memory, so games are cleared when the app is closed. Persitance is planned for CA2.
+**NB** *Data is currently stored in memory, so games are cleared when the app is closed. Persitance is planned for CA2.*
 
 ## Screenshots
 | Main menu | Game list | Add / edit |
 |---|---|---|
-| ![Main menu](docs/Screenshots/Main_menu.png) | ![Game list](docs/Screenshots/Game_list.png) | ![Add game](docs/Screenshots/Add_edit.png) |
+| ![Main menu](docs/Screenshots/Main_menu.jpg) | ![Game list](docs/Screenshots/Game_list.jpg) | ![Add game](docs/Screenshots/Add_edit.jpg) |
 
 ## Architecture
 The app separates data, UI layouts and UI logic:
