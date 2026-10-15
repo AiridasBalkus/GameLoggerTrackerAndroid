@@ -6,29 +6,17 @@ These diagrams describe the Game Backlog Tracker as submitted for CA1. They are 
 
 The app is split into three layers: the **model** (`GameModel`, `GameStatus`), **persistence** behind the `GameStore` interface (currently `GameMemStore`, shared through the `AppData` singleton), and the **UI** (three activities plus `GameAdapter` for the RecyclerView). The adapter does not modify data itself; it reports Edit and Delete taps back to `GameListActivity` through callback functions.
 
+### Data layer
+
+How games are modelled and stored. Activities only ever talk to the `GameStore` interface through `AppData`, so the in-memory store can be swapped for a persistent one in CA2 without changing the UI.
+
 ```mermaid
 classDiagram
-    direction LR
+    direction TB
 
-    class GameStatus {
-        <<enumeration>>
-        WISHLIST
-        BACKLOG
-        PLAYING
-        COMPLETED
-        DROPPED
-        +label: String
-    }
-
-    class GameModel {
-        <<data class>>
-        +id: Long
-        +title: String
-        +platform: String
-        +status: GameStatus
-        +rating: Int
-        +playtimeHours: Int
-        +notes: String
+    class AppData {
+        <<object>>
+        +games: GameStore
     }
 
     class GameStore {
@@ -50,10 +38,40 @@ classDiagram
         +delete(id: Long) Boolean
     }
 
-    class AppData {
-        <<object>>
-        +games: GameStore
+    class GameModel {
+        <<data class>>
+        +id: Long
+        +title: String
+        +platform: String
+        +status: GameStatus
+        +rating: Int
+        +playtimeHours: Int
+        +notes: String
     }
+
+    class GameStatus {
+        <<enumeration>>
+        WISHLIST
+        BACKLOG
+        PLAYING
+        COMPLETED
+        DROPPED
+        +label: String
+    }
+
+    AppData --> GameStore : games
+    GameStore <|.. GameMemStore : implements
+    GameMemStore "1" o-- "*" GameModel : stores
+    GameModel --> GameStatus : status
+```
+
+### UI layer
+
+The three activities, the RecyclerView adapter, and how they connect to the data layer through `AppData`.
+
+```mermaid
+classDiagram
+    direction TB
 
     class MainActivity {
         +onCreate(savedInstanceState: Bundle?)
@@ -86,10 +104,11 @@ classDiagram
         -games: List~GameModel~
         -onEdit: GameModel → Unit
         -onDelete: GameModel → Unit
-        +onCreateViewHolder(parent: ViewGroup, viewType: Int) GameViewHolder
-        +onBindViewHolder(holder: GameViewHolder, position: Int)
+        +onCreateViewHolder(parent, viewType) GameViewHolder
+        +onBindViewHolder(holder, position)
         +getItemCount() Int
         +updateGames(newGames: List~GameModel~)
+        -statusColor(status: GameStatus) Int
     }
 
     class GameViewHolder {
@@ -103,20 +122,19 @@ classDiagram
         +deleteButton: Button
     }
 
-    GameModel --> GameStatus : status
-    GameStore <|.. GameMemStore : implements
-    GameMemStore "1" o-- "*" GameModel : stores
-    AppData --> GameStore : games
+    class AppData {
+        <<object>>
+        +games: GameStore
+    }
 
     MainActivity ..> GameListActivity : starts
     MainActivity ..> AddEditActivity : starts
-    MainActivity ..> AppData : reads stats
-    GameListActivity ..> AddEditActivity : starts (id extra)
+    GameListActivity ..> AddEditActivity : starts with id
     GameListActivity *-- GameAdapter : adapter
+    GameAdapter ..> GameViewHolder : creates
+    MainActivity ..> AppData : uses
     GameListActivity ..> AppData : uses
     AddEditActivity ..> AppData : uses
-    GameAdapter ..> GameViewHolder : creates
-    GameAdapter ..> GameModel : displays
 ```
 
 ## Use case diagram
