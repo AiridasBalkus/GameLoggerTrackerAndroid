@@ -25,6 +25,7 @@
     <string name="filter_dropped">Dropped</string>
     <string name="empty_list">No games yet. Tap \"Add game\" to start your backlog!</string>
     <string name="back_to_menu">Back to menu</string>
+    <string name="no_matches">No games match your search or filter.</string>
     <!-- Game card -->
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
