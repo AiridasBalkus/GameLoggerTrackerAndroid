@@ -83,6 +83,8 @@ classDiagram
     class GameListActivity {
         -adapter: GameAdapter
         -emptyText: TextView
+        -searchQuery: String
+        -statusFilter: GameStatus?
         +onCreate(savedInstanceState: Bundle?)
         +onResume()
         -refreshList()
@@ -139,7 +141,7 @@ classDiagram
 
 ## Use case diagram
 
-One actor, the player, manages their own backlog. Adding and editing both include title validation; deleting always includes a confirmation step. The dashed use cases are visible in the UI as placeholders and are planned for CA2.
+One actor, the player, manages their own backlog. Adding and editing both include title validation; deleting always includes a confirmation step. Search and filter work together on the list screen. The dashed use cases are visible in the UI as placeholders and are planned for CA2.
 
 ```mermaid
 flowchart LR
@@ -149,14 +151,14 @@ flowchart LR
         direction TB
         view(["View game list"])
         stats(["View backlog summary"])
+        search(["Search games"])
+        filter(["Filter by status"])
         add(["Add game"])
         edit(["Edit game"])
         del(["Delete game"])
         validate(["Validate title"])
         confirm(["Confirm deletion"])
 
-        search(["Search games"])
-        filter(["Filter by status"])
         sort(["Sort games"])
         cover(["Add cover art"])
         link(["Link gaming account"])
@@ -167,8 +169,8 @@ flowchart LR
     player --- add
     player --- edit
     player --- del
-    player -.- search
-    player -.- filter
+    player --- search
+    player --- filter
     player -.- sort
     player -.- cover
     player -.- link
@@ -178,7 +180,7 @@ flowchart LR
     del -. "«include»" .-> confirm
 
     classDef planned stroke-dasharray: 5 5,opacity:0.6
-    class search,filter,sort,cover,link planned
+    class sort,cover,link planned
 ```
 
 ## Sequence diagram: adding a game

@@ -12,11 +12,12 @@ This an android application for keeping track of the games you want to play, are
 - Colour-coded status badges so you can scan the list at a glance.
 - Input validation: a title is required and playtime must be a vaild number.
 - Empty state message when the backlog has no games.
+- Search games by title or platform as you type.
+- Filter the list by status using chips (All, Playing, Backlog, Completed, Wishlist, Dropped); search and filter combine.
 
 ### CA2 Features (subject to change)
 There is already small placeholders for these and show a simple message "coming soon" or "Linking Steam, PlayStation and Xbox accounts is coming in a future update"
-- Search games by title
-- Filter the list by status
+- Sort the list
 - Cover art for each game
 - Statistic and Settings screens
 - User profile with potential integration with Steam, Xbox and maybe even PlayStation
